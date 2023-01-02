@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" >
+	<Properties>
+		<Property name="basePath">/app/ECOM_API_Services/logs</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="fileLogger" filename="${basePath}/ECOM_API_Services.log" filePattern="${basePath}/ECOM_API_Services-%d{yyyy-MM-dd}.log.gz">
+			<PatternLayout>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %c{1}:%L - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+			</Policies>
+		</RollingFile>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level%c{1}:%L - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.infrasoft" level="debug" additivity="true" >
+			<appender-ref ref="fileLogger" level="debug" />
+		</Logger>
+		<Root level="debug" additivity="false">
+			<appender-ref ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>
